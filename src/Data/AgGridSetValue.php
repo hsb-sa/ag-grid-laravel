@@ -1,6 +1,6 @@
 <?php
 
-namespace Clickbar\AgGrid\Data;
+namespace HeshamFouda\AgGrid\Data;
 
 class AgGridSetValue
 {

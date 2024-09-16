@@ -1,6 +1,6 @@
 <?php
 
-namespace Clickbar\AgGrid\Console\Commands;
+namespace HeshamFouda\AgGrid\Console\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 

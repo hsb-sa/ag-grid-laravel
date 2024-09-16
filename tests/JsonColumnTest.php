@@ -1,10 +1,10 @@
 <?php
 
-use Clickbar\AgGrid\AgGridQueryBuilder;
-use Clickbar\AgGrid\Enums\AgGridNumberFilterType;
-use Clickbar\AgGrid\Enums\AgGridTextFilterType;
-use Clickbar\AgGrid\Tests\TestClasses\Models\Flamingo;
-use Clickbar\AgGrid\Tests\TestClasses\Models\Keeper;
+use HeshamFouda\AgGrid\AgGridQueryBuilder;
+use HeshamFouda\AgGrid\Enums\AgGridNumberFilterType;
+use HeshamFouda\AgGrid\Enums\AgGridTextFilterType;
+use HeshamFouda\AgGrid\Tests\TestClasses\Models\Flamingo;
+use HeshamFouda\AgGrid\Tests\TestClasses\Models\Keeper;
 
 beforeEach(function () {
     $this->keeper = Keeper::factory()->createOne();

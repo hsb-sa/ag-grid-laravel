@@ -1,8 +1,8 @@
 <?php
 
-namespace Clickbar\AgGrid\Rules;
+namespace HeshamFouda\AgGrid\Rules;
 
-use Clickbar\AgGrid\Enums\AgGridRowModel;
+use HeshamFouda\AgGrid\Enums\AgGridRowModel;
 use Illuminate\Validation\Rules\Enum;
 
 class AgGridSelection extends NestedRule

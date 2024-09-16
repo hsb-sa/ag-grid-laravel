@@ -1,8 +1,8 @@
 <?php
 
-namespace Clickbar\AgGrid;
+namespace HeshamFouda\AgGrid;
 
-use Clickbar\AgGrid\Contracts\AgGridValueFormatter;
+use HeshamFouda\AgGrid\Contracts\AgGridValueFormatter;
 
 class AgGridColumnDefinition
 {

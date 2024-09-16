@@ -1,6 +1,6 @@
 <?php
 
-namespace Clickbar\AgGrid\Tests\TestClasses\Factories;
+namespace HeshamFouda\AgGrid\Tests\TestClasses\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 

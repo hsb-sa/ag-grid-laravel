@@ -1,8 +1,8 @@
 <?php
 
-namespace Clickbar\AgGrid\Requests;
+namespace HeshamFouda\AgGrid\Requests;
 
-use Clickbar\AgGrid\Enums\AgGridRowModel;
+use HeshamFouda\AgGrid\Enums\AgGridRowModel;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
 

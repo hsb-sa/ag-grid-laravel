@@ -1,8 +1,8 @@
 <?php
 
-namespace Clickbar\AgGrid\Model;
+namespace HeshamFouda\AgGrid\Model;
 
-use Clickbar\AgGrid\Exceptions\ViewManipulationNotAllowedException;
+use HeshamFouda\AgGrid\Exceptions\ViewManipulationNotAllowedException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 

@@ -1,28 +1,22 @@
 {
-    "name": "clickbar/ag-grid-laravel",
+    "name": "hesham-fouda/ag-grid-laravel",
     "description": "AG Grid server-side adapter for Laravel.",
     "keywords": [
-        "clickbar",
         "laravel",
         "ag-grid-laravel"
     ],
-    "homepage": "https://github.com/clickbar/ag-grid-laravel",
+    "homepage": "https://github.com/hesham-fouda/ag-grid-laravel",
     "license": "MIT",
     "authors": [
         {
-            "name": "Jan Becker",
-            "email": "jb@clickbar.dev",
-            "role": "Developer"
-        },
-        {
-            "name": "Adrian Hawlitschek",
-            "email": "ah@clickbar.dev",
+            "name": "Hesham Fouda",
+            "email": "hf@heshamfouda.me",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^8.1",
-        "illuminate/contracts": "^10.0",
+        "php": "^8.1|^8.2",
+        "illuminate/contracts": "^10.0|^11.0",
         "maatwebsite/excel": "^3.1",
         "spatie/laravel-package-tools": "^1.14.0"
     },
@@ -40,12 +34,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Clickbar\\AgGrid\\": "src/"
+            "HeshamFouda\\AgGrid\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Clickbar\\AgGrid\\Tests\\": "tests/"
+            "HeshamFouda\\AgGrid\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -75,7 +69,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Clickbar\\AgGrid\\AgGridServiceProvider"
+                "HeshamFouda\\AgGrid\\AgGridServiceProvider"
             ]
         }
     },

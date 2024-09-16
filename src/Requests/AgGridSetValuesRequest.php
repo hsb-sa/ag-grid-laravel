@@ -1,6 +1,6 @@
 <?php
 
-namespace Clickbar\AgGrid\Requests;
+namespace HeshamFouda\AgGrid\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

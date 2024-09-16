@@ -1,8 +1,8 @@
 <?php
 
-namespace Clickbar\AgGrid;
+namespace HeshamFouda\AgGrid;
 
-use Clickbar\AgGrid\Contracts\AgGridExportTimezoneProvider;
+use HeshamFouda\AgGrid\Contracts\AgGridExportTimezoneProvider;
 
 class AgGridDefaultExportTimezoneProvider implements AgGridExportTimezoneProvider
 {

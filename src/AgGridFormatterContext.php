@@ -1,6 +1,6 @@
 <?php
 
-namespace Clickbar\AgGrid;
+namespace HeshamFouda\AgGrid;
 
 use DateTimeZone;
 

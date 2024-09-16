@@ -1,8 +1,8 @@
 <?php
 
-namespace Clickbar\AgGrid\Tests\TestClasses\Factories;
+namespace HeshamFouda\AgGrid\Tests\TestClasses\Factories;
 
-use Clickbar\AgGrid\Tests\TestClasses\Models\Zoo;
+use HeshamFouda\AgGrid\Tests\TestClasses\Models\Zoo;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class KeeperFactory extends Factory

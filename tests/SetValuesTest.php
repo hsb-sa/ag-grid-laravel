@@ -1,11 +1,11 @@
 <?php
 
-use Clickbar\AgGrid\AgGridQueryBuilder;
-use Clickbar\AgGrid\Exceptions\InvalidSetValueOperation;
-use Clickbar\AgGrid\Exceptions\UnauthorizedSetFilterColumn;
-use Clickbar\AgGrid\Tests\TestClasses\Models\Flamingo;
-use Clickbar\AgGrid\Tests\TestClasses\Models\Keeper;
-use Clickbar\AgGrid\Tests\TestClasses\Models\Zoo;
+use HeshamFouda\AgGrid\AgGridQueryBuilder;
+use HeshamFouda\AgGrid\Exceptions\InvalidSetValueOperation;
+use HeshamFouda\AgGrid\Exceptions\UnauthorizedSetFilterColumn;
+use HeshamFouda\AgGrid\Tests\TestClasses\Models\Flamingo;
+use HeshamFouda\AgGrid\Tests\TestClasses\Models\Keeper;
+use HeshamFouda\AgGrid\Tests\TestClasses\Models\Zoo;
 
 beforeEach(function () {
     $this->zooNamedVivarium = Zoo::factory()->state(['name' => 'Vivarium', 'address' => [

@@ -1,9 +1,9 @@
 <?php
 
-namespace Clickbar\AgGrid;
+namespace HeshamFouda\AgGrid;
 
-use Clickbar\AgGrid\Contracts\AgGridExportable;
-use Clickbar\AgGrid\Contracts\AgGridExportTimezoneProvider;
+use HeshamFouda\AgGrid\Contracts\AgGridExportable;
+use HeshamFouda\AgGrid\Contracts\AgGridExportTimezoneProvider;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Collection;

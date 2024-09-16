@@ -1,9 +1,9 @@
 # AG Grid server-side adapter for Laravel
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/clickbar/ag-grid-laravel.svg?style=flat-square)](https://packagist.org/packages/clickbar/ag-grid-laravel)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/clickbar/ag-grid-laravel/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/clickbar/ag-grid-laravel/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/clickbar/ag-grid-laravel/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/clickbar/ag-grid-laravel/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/clickbar/ag-grid-laravel.svg?style=flat-square)](https://packagist.org/packages/clickbar/ag-grid-laravel)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/hesham-fouda/ag-grid-laravel.svg?style=flat-square)](https://packagist.org/packages/hesham-fouda/ag-grid-laravel)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/hesham-fouda/ag-grid-laravel/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/hesham-fouda/ag-grid-laravel/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/hesham-fouda/ag-grid-laravel/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/hesham-fouda/ag-grid-laravel/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/hesham-fouda/ag-grid-laravel.svg?style=flat-square)](https://packagist.org/packages/hesham-fouda/ag-grid-laravel)
 
 This package implements a server-side adapter for [AG Grid](https://www.ag-grid.com/) with support for filtering, sorting, exporting and server-side selection.
 
@@ -12,7 +12,7 @@ This package implements a server-side adapter for [AG Grid](https://www.ag-grid.
 You can install the package via composer:
 
 ```bash
-composer require clickbar/ag-grid-laravel
+composer require hesham-fouda/ag-grid-laravel
 ```
 
 You can publish the config file with:
@@ -29,7 +29,7 @@ return [
      * The class that contains the provider for determining the timezone 
      * to use for DateTime formatting in exports.
      */
-    'export_timezone_provider' => \Clickbar\AgGrid\AgGridDefaultExportTimezoneProvider::class
+    'export_timezone_provider' => \HeshamFouda\AgGrid\AgGridDefaultExportTimezoneProvider::class
 ];
 ```
 
@@ -357,7 +357,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
-- [clickbar. GmbH](https://github.com/clickbar)
+- [HeshamFouda](https://github.com/hesham-fouda)
 - [All Contributors](../../contributors)
 
 ## License

@@ -3,9 +3,9 @@
 namespace {{ namespace }};
 
 use {{ rootNamespace }}Http\Controllers\Controller;
-use Clickbar\AgGrid\AgGridQueryBuilder;
-use Clickbar\AgGrid\Requests\AgGridGetRowsRequest;
-use Clickbar\AgGrid\Requests\AgGridSetValuesRequest;
+use HeshamFouda\AgGrid\AgGridQueryBuilder;
+use HeshamFouda\AgGrid\Requests\AgGridGetRowsRequest;
+use HeshamFouda\AgGrid\Requests\AgGridSetValuesRequest;
 
 class {{ class }} extends Controller
 {

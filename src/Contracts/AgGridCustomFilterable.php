@@ -1,6 +1,6 @@
 <?php
 
-namespace Clickbar\AgGrid\Contracts;
+namespace HeshamFouda\AgGrid\Contracts;
 
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 

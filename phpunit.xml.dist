@@ -16,7 +16,7 @@
     backupStaticProperties="false"
 >
     <testsuites>
-        <testsuite name="Clickbar Test Suite">
+        <testsuite name="AgGrid Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

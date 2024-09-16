@@ -1,8 +1,8 @@
 <?php
 
-namespace Clickbar\AgGrid\Tests;
+namespace HeshamFouda\AgGrid\Tests;
 
-use Clickbar\AgGrid\AgGridServiceProvider;
+use HeshamFouda\AgGrid\AgGridServiceProvider;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Schema\Blueprint;
@@ -28,11 +28,11 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessModelNamesUsing(
-            fn (Factory $factory) => 'Clickbar\\AgGrid\\Tests\\TestClasses\\Models\\'.Str::before(class_basename($factory::class), 'Factory')
+            fn (Factory $factory) => 'HeshamFouda\\AgGrid\\Tests\\TestClasses\\Models\\'.Str::before(class_basename($factory::class), 'Factory')
         );
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Clickbar\\AgGrid\\Tests\\TestClasses\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'HeshamFouda\\AgGrid\\Tests\\TestClasses\\Factories\\'.class_basename($modelName).'Factory'
         );
 
         /** @var DatabaseManager $db */

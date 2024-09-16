@@ -1,9 +1,9 @@
 <?php
 
-namespace Clickbar\AgGrid\Formatters;
+namespace HeshamFouda\AgGrid\Formatters;
 
-use Clickbar\AgGrid\AgGridFormatterContext;
-use Clickbar\AgGrid\Contracts\AgGridValueFormatter;
+use HeshamFouda\AgGrid\AgGridFormatterContext;
+use HeshamFouda\AgGrid\Contracts\AgGridValueFormatter;
 
 class AgGridBackedEnumFormatter implements AgGridValueFormatter
 {

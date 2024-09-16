@@ -1,9 +1,9 @@
 <?php
 
-use Clickbar\AgGrid\AgGridQueryBuilder;
-use Clickbar\AgGrid\Enums\AgGridRowModel;
-use Clickbar\AgGrid\Tests\TestClasses\Models\Flamingo;
-use Clickbar\AgGrid\Tests\TestClasses\Models\Keeper;
+use HeshamFouda\AgGrid\AgGridQueryBuilder;
+use HeshamFouda\AgGrid\Enums\AgGridRowModel;
+use HeshamFouda\AgGrid\Tests\TestClasses\Models\Flamingo;
+use HeshamFouda\AgGrid\Tests\TestClasses\Models\Keeper;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 
 beforeEach(function () {

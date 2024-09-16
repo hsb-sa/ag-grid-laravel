@@ -1,6 +1,6 @@
 <?php
 
-namespace Clickbar\AgGrid\Support;
+namespace HeshamFouda\AgGrid\Support;
 
 use Illuminate\Database\Eloquent\Model;
 

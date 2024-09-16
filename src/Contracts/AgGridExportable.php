@@ -1,8 +1,8 @@
 <?php
 
-namespace Clickbar\AgGrid\Contracts;
+namespace HeshamFouda\AgGrid\Contracts;
 
-use Clickbar\AgGrid\AgGridColumnDefinition;
+use HeshamFouda\AgGrid\AgGridColumnDefinition;
 
 interface AgGridExportable
 {

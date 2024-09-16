@@ -1,9 +1,9 @@
 <?php
 
-namespace Clickbar\AgGrid;
+namespace HeshamFouda\AgGrid;
 
-use Clickbar\AgGrid\Console\Commands\MakeAgGridControllerCommand;
-use Clickbar\AgGrid\Routing\PendingAgGridRegistration;
+use HeshamFouda\AgGrid\Console\Commands\MakeAgGridControllerCommand;
+use HeshamFouda\AgGrid\Routing\PendingAgGridRegistration;
 use Illuminate\Support\Facades\Route;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Clickbar\AgGrid\Exceptions;
+namespace HeshamFouda\AgGrid\Exceptions;
 
 class ViewManipulationNotAllowedException extends \Exception
 {

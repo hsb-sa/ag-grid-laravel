@@ -1,6 +1,6 @@
 <?php
 
-namespace Clickbar\AgGrid\Enums;
+namespace HeshamFouda\AgGrid\Enums;
 
 enum AgGridNumberFilterType: string
 {

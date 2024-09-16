@@ -1,10 +1,10 @@
 <?php
 
-namespace Clickbar\AgGrid\Formatters;
+namespace HeshamFouda\AgGrid\Formatters;
 
 use Carbon\Carbon;
-use Clickbar\AgGrid\AgGridFormatterContext;
-use Clickbar\AgGrid\Contracts\AgGridValueFormatter;
+use HeshamFouda\AgGrid\AgGridFormatterContext;
+use HeshamFouda\AgGrid\Contracts\AgGridValueFormatter;
 use DateTimeInterface;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;

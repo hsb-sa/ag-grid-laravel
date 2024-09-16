@@ -1,8 +1,8 @@
 <?php
 
-namespace Clickbar\AgGrid\Tests\TestClasses\Factories;
+namespace HeshamFouda\AgGrid\Tests\TestClasses\Factories;
 
-use Clickbar\AgGrid\Tests\TestClasses\Enums\FlamingoSpecies;
+use HeshamFouda\AgGrid\Tests\TestClasses\Enums\FlamingoSpecies;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class FlamingoFactory extends Factory

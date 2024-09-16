@@ -1,8 +1,8 @@
 <?php
 
-namespace Clickbar\AgGrid\Tests\TestClasses\Enums;
+namespace HeshamFouda\AgGrid\Tests\TestClasses\Enums;
 
-use Clickbar\AgGrid\Data\AgGridSetValue;
+use HeshamFouda\AgGrid\Data\AgGridSetValue;
 
 enum FlamingoSpecies: string
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Clickbar\AgGrid\Rules;
+namespace HeshamFouda\AgGrid\Rules;
 
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;

@@ -1,8 +1,8 @@
 <?php
 
-namespace Clickbar\AgGrid\Contracts;
+namespace HeshamFouda\AgGrid\Contracts;
 
-use Clickbar\AgGrid\AgGridFormatterContext;
+use HeshamFouda\AgGrid\AgGridFormatterContext;
 
 interface AgGridValueFormatter
 {

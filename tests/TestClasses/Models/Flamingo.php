@@ -1,16 +1,16 @@
 <?php
 
-namespace Clickbar\AgGrid\Tests\TestClasses\Models;
+namespace HeshamFouda\AgGrid\Tests\TestClasses\Models;
 
-use Clickbar\AgGrid\AgGridColumnDefinition;
-use Clickbar\AgGrid\Contracts\AgGridCustomFilterable;
-use Clickbar\AgGrid\Contracts\AgGridExportable;
-use Clickbar\AgGrid\Formatters\AgGridArrayFormatter;
-use Clickbar\AgGrid\Formatters\AgGridBackedEnumFormatter;
-use Clickbar\AgGrid\Formatters\AgGridBooleanFormatter;
-use Clickbar\AgGrid\Formatters\AgGridDateFormatter;
-use Clickbar\AgGrid\Formatters\AgGridDateTimeFormatter;
-use Clickbar\AgGrid\Tests\TestClasses\Enums\FlamingoSpecies;
+use HeshamFouda\AgGrid\AgGridColumnDefinition;
+use HeshamFouda\AgGrid\Contracts\AgGridCustomFilterable;
+use HeshamFouda\AgGrid\Contracts\AgGridExportable;
+use HeshamFouda\AgGrid\Formatters\AgGridArrayFormatter;
+use HeshamFouda\AgGrid\Formatters\AgGridBackedEnumFormatter;
+use HeshamFouda\AgGrid\Formatters\AgGridBooleanFormatter;
+use HeshamFouda\AgGrid\Formatters\AgGridDateFormatter;
+use HeshamFouda\AgGrid\Formatters\AgGridDateTimeFormatter;
+use HeshamFouda\AgGrid\Tests\TestClasses\Enums\FlamingoSpecies;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

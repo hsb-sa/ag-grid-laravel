@@ -1,8 +1,8 @@
 <?php
 
-use Clickbar\AgGrid\AgGridQueryBuilder;
-use Clickbar\AgGrid\Tests\TestClasses\Models\Flamingo;
-use Clickbar\AgGrid\Tests\TestClasses\Models\Keeper;
+use HeshamFouda\AgGrid\AgGridQueryBuilder;
+use HeshamFouda\AgGrid\Tests\TestClasses\Models\Flamingo;
+use HeshamFouda\AgGrid\Tests\TestClasses\Models\Keeper;
 
 beforeEach(function () {
     $this->keeperNamedJohn = Keeper::factory()->state(['name' => 'John'])->createOne();

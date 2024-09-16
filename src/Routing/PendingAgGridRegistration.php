@@ -1,6 +1,6 @@
 <?php
 
-namespace Clickbar\AgGrid\Routing;
+namespace HeshamFouda\AgGrid\Routing;
 
 use Illuminate\Support\Facades\Route;
 
