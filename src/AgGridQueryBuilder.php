@@ -41,6 +41,7 @@ class AgGridQueryBuilder implements Responsable
     protected ?string $resourceClass = null;
 
     protected bool $addIndexColumn = false;
+    protected ?int $totalCount = null;
 
     /**
      * @param EloquentBuilder|Relation|Model|class-string<Model> $subject
@@ -240,7 +241,25 @@ class AgGridQueryBuilder implements Responsable
         }
 
         // we need an additional sort condition so that the order is stable in all cases
-        $this->subject->orderBy($this->subject->getModel()->getKeyName());
+        $modelKeyName = $this->subject->getModel()->getKeyName();
+        if (
+            $modelKeyName !== 'id' &&
+            !$sorts->contains('colId', $modelKeyName) &&
+            (
+                empty($this->subject->getQuery()->groups) || !in_array($modelKeyName, $this->subject->getQuery()->groups)
+            )
+        ) {
+            $this->subject->orderBy($modelKeyName, 'asc');
+        }
+    }
+
+    public function getQuery(): QueryBuilder
+    {
+        if ($this->subject instanceof EloquentBuilder) {
+            return $this->subject->getQuery();
+        }
+
+        return $this->subject->getBaseQuery();
     }
 
     protected function addLimitAndOffsetToQuery(): void
@@ -283,6 +302,18 @@ class AgGridQueryBuilder implements Responsable
     public static function forSelection(array $selection, EloquentBuilder|Relation|Model|string $subject): AgGridQueryBuilder
     {
         return new AgGridQueryBuilder($selection, $subject);
+    }
+
+    /**
+     * @param int $count
+     *
+     * @return AgGridQueryBuilder
+     */
+    public function setTotalCount(int $count): self
+    {
+        $this->totalCount = $count;
+
+        return $this;
     }
 
     /**
@@ -414,13 +445,17 @@ class AgGridQueryBuilder implements Responsable
             );
         }
 
-        $clone = $this->clone();
-        tap($clone->getQuery(), function (QueryBuilder $query) {
-            /** @phpstan-ignore-next-line */
-            $query->limit = $query->offset = $query->orders = null;
-            $query->cleanBindings(['order']);
-        });
-        $total = $clone->count();
+        if ($this->totalCount !== null) {
+            $total = $this->totalCount;
+        } else {
+            $clone = $this->clone();
+            tap($clone->getQuery(), function (QueryBuilder $query) {
+                /** @phpstan-ignore-next-line */
+                $query->limit = $query->offset = $query->orders = null;
+                $query->cleanBindings(['order']);
+            });
+            $total = $clone->count();
+        }
 
         $data = $this->get();
 
@@ -450,14 +485,5 @@ class AgGridQueryBuilder implements Responsable
             'total' => $total,
             'data' => $data,
         ]);
-    }
-
-    public function getQuery(): QueryBuilder
-    {
-        if ($this->subject instanceof EloquentBuilder) {
-            return $this->subject->getQuery();
-        }
-
-        return $this->subject->getBaseQuery();
     }
 }
