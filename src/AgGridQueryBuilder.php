@@ -472,7 +472,7 @@ class AgGridQueryBuilder implements Responsable
             }
         }
 
-        if ($this->addIndexColumn) {
+        if ($this->addIndexColumn && $exportFormat === null) {
             $data = $data->map(function ($item, $index) use ($request) {
                 if ($item instanceof JsonResource)
                     $item = $item->toArray($request);

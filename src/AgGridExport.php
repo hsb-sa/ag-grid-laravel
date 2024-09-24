@@ -88,7 +88,9 @@ class AgGridExport implements FromQuery, ShouldAutoSize, WithColumnFormatting, W
 
     public function headings(): array
     {
-        return collect($this->columnsToExport)->map(fn ($column) => $this->columnDefinitions[$column]->name)->all();
+        return collect($this->columnsToExport)
+            ->map(fn ($column) => $this->columnDefinitions[$column]->name)
+            ->all();
     }
 
     public function columnFormats(): array
