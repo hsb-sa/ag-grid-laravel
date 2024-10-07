@@ -41,12 +41,15 @@ class AgGridQueryBuilder implements Responsable
     protected ?string $resourceClass = null;
 
     protected bool $addIndexColumn = false;
+
     protected bool $initialized = false;
+
     protected ?int $totalCount = null;
+
     protected array $filters = [];
 
     /**
-     * @param EloquentBuilder|Relation|Model|class-string<Model> $subject
+     * @param  EloquentBuilder|Relation|Model|class-string<Model>  $subject
      */
     public function __construct(array $params, EloquentBuilder|Relation|Model|string $subject)
     {
@@ -65,7 +68,7 @@ class AgGridQueryBuilder implements Responsable
 
     protected function addFiltersToQuery(): void
     {
-        if (!isset($this->params['filterModel'])) {
+        if (! isset($this->params['filterModel'])) {
             return;
         }
 
@@ -74,7 +77,7 @@ class AgGridQueryBuilder implements Responsable
         // Check if we are in set values mode and exclude the filter for the given set value column
         $colId = Arr::get($this->params, 'column');
         if ($colId) {
-            $filters = $filters->filter(fn($value, $key) => $key !== $colId);
+            $filters = $filters->filter(fn ($value, $key) => $key !== $colId);
         }
 
         foreach ($filters as $colId => $filter) {
@@ -123,7 +126,7 @@ class AgGridQueryBuilder implements Responsable
         $columnName = $column->getNameAsJsonPath();
         $values = $filter['values'];
         $all = $filter['all'] ?? false;
-        $filteredValues = array_filter($values, fn($value) => $value !== null);
+        $filteredValues = array_filter($values, fn ($value) => $value !== null);
 
         $subject->where(function (EloquentBuilder $query) use ($column, $all, $columnName, $values, $filteredValues, $isJsonColumn) {
             if (count($filteredValues) !== count($values)) {
@@ -136,7 +139,7 @@ class AgGridQueryBuilder implements Responsable
                 // TODO: find a workaround!
                 $query->orWhere(
                     $column->getNameAsJsonAccessor(),
-                    $all ? '?&' : '?|', '{' . implode(',', $filteredValues) . '}',
+                    $all ? '?&' : '?|', '{'.implode(',', $filteredValues).'}',
                 );
             } else {
                 $query->orWhereIn($columnName, $filteredValues);
@@ -153,10 +156,10 @@ class AgGridQueryBuilder implements Responsable
         match ($type) {
             AgGridTextFilterType::Equals => $subject->where($columnName, '=', $value, boolean: $operator),
             AgGridTextFilterType::NotEqual => $subject->where($columnName, '!=', $value, boolean: $operator),
-            AgGridTextFilterType::Contains => $subject->where($columnName, 'ilike', '%' . $value . '%', boolean: $operator),
-            AgGridTextFilterType::NotContains => $subject->where($columnName, 'not ilike', '%' . $value . '%', boolean: $operator),
-            AgGridTextFilterType::StartsWith => $subject->where($columnName, 'ilike', $value . '%', boolean: $operator),
-            AgGridTextFilterType::EndsWith => $subject->where($columnName, 'ilike', '%' . $value, boolean: $operator),
+            AgGridTextFilterType::Contains => $subject->where($columnName, 'ilike', '%'.$value.'%', boolean: $operator),
+            AgGridTextFilterType::NotContains => $subject->where($columnName, 'not ilike', '%'.$value.'%', boolean: $operator),
+            AgGridTextFilterType::StartsWith => $subject->where($columnName, 'ilike', $value.'%', boolean: $operator),
+            AgGridTextFilterType::EndsWith => $subject->where($columnName, 'ilike', '%'.$value, boolean: $operator),
             AgGridTextFilterType::Blank => $subject->whereNull($columnName, boolean: $operator),
             AgGridTextFilterType::NotBlank => $subject->whereNotNull($columnName, boolean: $operator),
         };
@@ -175,7 +178,7 @@ class AgGridQueryBuilder implements Responsable
             AgGridNumberFilterType::GreaterThanOrEqual => $subject->where($columnName, '>=', $value, boolean: $operator),
             AgGridNumberFilterType::LessThan => $subject->where($columnName, '<', $value, boolean: $operator),
             AgGridNumberFilterType::LessThanOrEqual => $subject->where($columnName, '<=', $value, boolean: $operator),
-            AgGridNumberFilterType::InRange => $subject->where(fn($q) => $q->where($columnName, '>=', $value)->where($columnName, '<=', $filter['filterTo']), boolean: $operator),
+            AgGridNumberFilterType::InRange => $subject->where(fn ($q) => $q->where($columnName, '>=', $value)->where($columnName, '<=', $filter['filterTo']), boolean: $operator),
             AgGridNumberFilterType::Blank => $subject->whereNull($columnName, boolean: $operator),
             AgGridNumberFilterType::NotBlank => $subject->whereNotNull($columnName, boolean: $operator),
         };
@@ -192,7 +195,7 @@ class AgGridQueryBuilder implements Responsable
             AgGridDateFilterType::NotEqual => $subject->whereDate($columnName, '!=', $dateFrom, boolean: $operator),
             AgGridDateFilterType::GreaterThan => $subject->whereDate($columnName, '>=', $dateFrom, boolean: $operator),
             AgGridDateFilterType::LessThan => $subject->whereDate($columnName, '<=', $dateFrom, boolean: $operator),
-            AgGridDateFilterType::InRange => $subject->where(fn($q) => $q->whereDate($columnName, '>=', $dateFrom)->whereDate($columnName, '<=', $dateTo), boolean: $operator),
+            AgGridDateFilterType::InRange => $subject->where(fn ($q) => $q->whereDate($columnName, '>=', $dateFrom)->whereDate($columnName, '<=', $dateTo), boolean: $operator),
             AgGridDateFilterType::Blank => $subject->whereNull($columnName, boolean: $operator),
             AgGridDateFilterType::NotBlank => $subject->whereNotNull($columnName, boolean: $operator),
         };
@@ -200,7 +203,7 @@ class AgGridQueryBuilder implements Responsable
 
     protected function addToggledFilterToQuery(): void
     {
-        if (!isset($this->params['rowModel'])) {
+        if (! isset($this->params['rowModel'])) {
             return;
         }
         match (AgGridRowModel::from($this->params['rowModel'])) {
@@ -227,7 +230,7 @@ class AgGridQueryBuilder implements Responsable
 
     protected function addSortsToQuery(): void
     {
-        if (!isset($this->params['sortModel'])) {
+        if (! isset($this->params['sortModel'])) {
             return;
         }
 
@@ -247,9 +250,9 @@ class AgGridQueryBuilder implements Responsable
         $modelKeyName = $this->subject->getModel()->getKeyName();
         if (
             $modelKeyName !== 'id' &&
-            !$sorts->contains('colId', $modelKeyName) &&
+            ! $sorts->contains('colId', $modelKeyName) &&
             (
-                empty($this->subject->getQuery()->groups) || !in_array($modelKeyName, $this->subject->getQuery()->groups)
+                empty($this->subject->getQuery()->groups) || ! in_array($modelKeyName, $this->subject->getQuery()->groups)
             )
         ) {
             $this->subject->orderBy($modelKeyName, 'asc');
@@ -280,7 +283,7 @@ class AgGridQueryBuilder implements Responsable
     /**
      * Returns a new AgGridQueryBuilder for an AgGridGetRowsRequest.
      *
-     * @param EloquentBuilder|Relation|Model|class-string<Model> $subject
+     * @param  EloquentBuilder|Relation|Model|class-string<Model>  $subject
      */
     public static function forRequest(AgGridGetRowsRequest $request, EloquentBuilder|Relation|Model|string $subject): AgGridQueryBuilder
     {
@@ -290,7 +293,7 @@ class AgGridQueryBuilder implements Responsable
     /**
      * Returns a new AgGridQueryBuilder for an AgGridGetRowsRequest.
      *
-     * @param EloquentBuilder|Relation|Model|class-string<Model> $subject
+     * @param  EloquentBuilder|Relation|Model|class-string<Model>  $subject
      */
     public static function forSetValuesRequest(AgGridSetValuesRequest $request, EloquentBuilder|Relation|Model|string $subject): AgGridQueryBuilder
     {
@@ -300,18 +303,13 @@ class AgGridQueryBuilder implements Responsable
     /**
      * Returns a new AgGridQueryBuilder for a selection.
      *
-     * @param EloquentBuilder|Relation|Model|class-string<Model> $subject
+     * @param  EloquentBuilder|Relation|Model|class-string<Model>  $subject
      */
     public static function forSelection(array $selection, EloquentBuilder|Relation|Model|string $subject): AgGridQueryBuilder
     {
         return new AgGridQueryBuilder($selection, $subject);
     }
 
-    /**
-     * @param int $count
-     *
-     * @return AgGridQueryBuilder
-     */
     public function setTotalCount(int $count): self
     {
         $this->totalCount = $count;
@@ -320,9 +318,7 @@ class AgGridQueryBuilder implements Responsable
     }
 
     /**
-     * @param bool $addIndexColumn
-     *
-     * @return AgGridQueryBuilder
+     * @param  bool  $addIndexColumn
      */
     public function addIndexColumn(): self
     {
@@ -334,8 +330,7 @@ class AgGridQueryBuilder implements Responsable
     /**
      * Add custom filter handler for the give column.
      *
-     * @param string $column
-     *
+     * @param  string  $column
      * @return $this
      */
     public function filterColumn($column, callable $callback): static
@@ -359,7 +354,7 @@ class AgGridQueryBuilder implements Responsable
     }
 
     /**
-     * @param class-string<JsonResource> $resourceClass
+     * @param  class-string<JsonResource>  $resourceClass
      */
     public function resource(string $resourceClass): self
     {
@@ -376,7 +371,7 @@ class AgGridQueryBuilder implements Responsable
             throw InvalidSetValueOperation::make();
         }
 
-        if (collect($allowedColumns)->first() !== '*' && !in_array($colId, $allowedColumns)) {
+        if (collect($allowedColumns)->first() !== '*' && ! in_array($colId, $allowedColumns)) {
             throw UnauthorizedSetFilterColumn::make($colId);
         }
 
@@ -388,7 +383,7 @@ class AgGridQueryBuilder implements Responsable
 
             return $this->subject->with($dottedRelation)
                 ->get()
-                ->map(fn(Model $model) => Arr::get($this->traverse($model, $dottedRelation)->toArray(), $column->getName()))
+                ->map(fn (Model $model) => Arr::get($this->traverse($model, $dottedRelation)->toArray(), $column->getName()))
                 ->unique()
                 ->sort()
                 ->values();
@@ -405,7 +400,7 @@ class AgGridQueryBuilder implements Responsable
             ->orderBy($columnName)
             ->pluck($pluckColumn);
 
-        if ($column->isJsonColumn() && !$column->isNestedJsonColumn()) {
+        if ($column->isJsonColumn() && ! $column->isNestedJsonColumn()) {
             // --> We need to flat the data, because we have a flat json array
             return $values->flatten(1)->unique()->sort()->values();
         }
@@ -456,7 +451,7 @@ class AgGridQueryBuilder implements Responsable
 
     public function initalize()
     {
-        if (!$this->initialized) {
+        if (! $this->initialized) {
             $this->initialized = true;
             $this->addFiltersToQuery();
             $this->addToggledFilterToQuery();
@@ -479,7 +474,7 @@ class AgGridQueryBuilder implements Responsable
 
             return Excel::download(
                 new AgGridExport($this->subject, $this->params['exportColumns'] ?? null),
-                'export.' . strtolower($writerType),
+                'export.'.strtolower($writerType),
                 $writerType
             );
         }
@@ -513,9 +508,11 @@ class AgGridQueryBuilder implements Responsable
 
         if ($this->addIndexColumn && $exportFormat === null) {
             $data = $data->map(function ($item, $index) use ($request) {
-                if ($item instanceof JsonResource)
+                if ($item instanceof JsonResource) {
                     $item = $item->toArray($request);
+                }
                 $item['__index'] = ($request->startRow ?? 0) + $index + 1;
+
                 return $item;
             });
         }
