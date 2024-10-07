@@ -41,7 +41,9 @@ class AgGridQueryBuilder implements Responsable
     protected ?string $resourceClass = null;
 
     protected bool $addIndexColumn = false;
+    protected bool $initialized = false;
     protected ?int $totalCount = null;
+    protected array $filters = [];
 
     /**
      * @param EloquentBuilder|Relation|Model|class-string<Model> $subject
@@ -59,11 +61,6 @@ class AgGridQueryBuilder implements Responsable
         if ($model instanceof AgGridCustomFilterable) {
             $model->applyAgGridCustomFilters($this->subject, $this->params['customFilters'] ?? []);
         }
-
-        $this->addFiltersToQuery();
-        $this->addToggledFilterToQuery();
-        $this->addSortsToQuery();
-        $this->addLimitAndOffsetToQuery();
     }
 
     protected function addFiltersToQuery(): void
@@ -103,13 +100,19 @@ class AgGridQueryBuilder implements Responsable
                 }
             });
         } else {
-            $filterType = AgGridFilterType::from($filter['filterType']);
-            match ($filterType) {
-                AgGridFilterType::Set => $this->addSetFilterToQuery($subject, $column, $filter, $operator),
-                AgGridFilterType::Text => $this->addTextFilterToQuery($subject, $column, $filter, $operator),
-                AgGridFilterType::Number => $this->addNumberFilterToQuery($subject, $column, $filter, $operator),
-                AgGridFilterType::Date => $this->addDateFilterToQuery($subject, $column, $filter, $operator),
-            };
+            $columnName = $column->getName();
+            if ($this->hasFilterColumn($columnName)) {
+                $callback = $this->filters[$columnName]['method'];
+                $callback($this, $subject, $filter, $operator);
+            } else {
+                $filterType = AgGridFilterType::from($filter['filterType']);
+                match ($filterType) {
+                    AgGridFilterType::Set => $this->addSetFilterToQuery($subject, $column, $filter, $operator),
+                    AgGridFilterType::Text => $this->addTextFilterToQuery($subject, $column, $filter, $operator),
+                    AgGridFilterType::Number => $this->addNumberFilterToQuery($subject, $column, $filter, $operator),
+                    AgGridFilterType::Date => $this->addDateFilterToQuery($subject, $column, $filter, $operator),
+                };
+            }
         }
     }
 
@@ -328,6 +331,28 @@ class AgGridQueryBuilder implements Responsable
         return $this;
     }
 
+    /**
+     * Add custom filter handler for the give column.
+     *
+     * @param string $column
+     *
+     * @return $this
+     */
+    public function filterColumn($column, callable $callback): static
+    {
+        $this->filters[$column] = ['method' => $callback];
+
+        return $this;
+    }
+
+    /**
+     * Check if column has custom filter handler.
+     */
+    public function hasFilterColumn(string $columnName): bool
+    {
+        return isset($this->filters[$columnName]);
+    }
+
     public function getSubject(): Relation|EloquentBuilder
     {
         return $this->subject;
@@ -345,6 +370,7 @@ class AgGridQueryBuilder implements Responsable
 
     public function toSetValues(array $allowedColumns = []): Collection
     {
+        $this->initalize();
         $colId = Arr::get($this->params, 'column');
         if (empty($colId)) {
             throw InvalidSetValueOperation::make();
@@ -414,6 +440,7 @@ class AgGridQueryBuilder implements Responsable
 
     public function __call($name, $arguments)
     {
+        $this->initalize();
         $result = $this->forwardCallTo($this->subject, $name, $arguments);
 
         /*
@@ -427,8 +454,20 @@ class AgGridQueryBuilder implements Responsable
         return $result;
     }
 
+    public function initalize()
+    {
+        if (!$this->initialized) {
+            $this->initialized = true;
+            $this->addFiltersToQuery();
+            $this->addToggledFilterToQuery();
+            $this->addSortsToQuery();
+            $this->addLimitAndOffsetToQuery();
+        }
+    }
+
     public function toResponse($request): mixed
     {
+        $this->initalize();
         $exportFormat = $this->params['exportFormat'] ?? null;
         if ($exportFormat !== null) {
             // this is an export
