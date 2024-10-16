@@ -1,11 +1,11 @@
 {
-    "name": "hesham-fouda/ag-grid-laravel",
+    "name": "hsb-sa/ag-grid-laravel",
     "description": "AG Grid server-side adapter for Laravel.",
     "keywords": [
         "laravel",
         "ag-grid-laravel"
     ],
-    "homepage": "https://github.com/hesham-fouda/ag-grid-laravel",
+    "homepage": "https://github.com/hsb-sa/ag-grid-laravel",
     "license": "MIT",
     "authors": [
         {
